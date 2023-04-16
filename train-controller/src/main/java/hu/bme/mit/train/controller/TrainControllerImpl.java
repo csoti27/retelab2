@@ -43,7 +43,8 @@ public class TrainControllerImpl implements TrainController {
 
 	@Override
 	public void setJoystickPosition(int joystickPosition) {
-		this.step = joystickPosition;		
+		this.step = joystickPosition;
+		followSpeed();		//ha a jostickposition megvaltozott, akkor allitunk a referencespeeden a followspeed fuggvenyben
 	}
 
 }
