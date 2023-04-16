@@ -23,6 +23,8 @@ public class TrainControllerImpl implements TrainController {
 		enforceSpeedLimit();
 	}
 
+
+
 	@Override
 	public int getReferenceSpeed() {
 		return referenceSpeed;

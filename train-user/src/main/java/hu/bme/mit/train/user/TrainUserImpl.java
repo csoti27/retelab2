@@ -10,7 +10,7 @@ public class TrainUserImpl implements TrainUser {
 
 	private boolean alarmState;
 
-	
+
 
 	@Override
 	public boolean getAlarmState() {
