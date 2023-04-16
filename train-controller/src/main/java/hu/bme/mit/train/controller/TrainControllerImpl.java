@@ -45,6 +45,7 @@ public class TrainControllerImpl implements TrainController {
 	public void setJoystickPosition(int joystickPosition) {
 		this.step = joystickPosition;
 		followSpeed();		//ha a jostickposition megvaltozott, akkor allitunk a referencespeeden a followspeed fuggvenyben
+							//ez a valtoztatas megoldotta a problemat
 	}
 
 }
