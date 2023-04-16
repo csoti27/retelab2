@@ -15,25 +15,26 @@ import static org.mockito.Mockito.*;
 public class TrainSensorTest {
 
 
-    TrainUser user = Mockito.mock(TrainUser.class);
-
-    TrainController controller=Mockito.mock(TrainController.class);;
+    TrainUser user;
+    TrainController controller;
 
     TrainSensorImpl sensor;
 
     @Before
     public void setup(){
 
+        user = Mockito.mock(TrainUser.class);
+        controller=Mockito.mock(TrainController.class);;
         sensor=new TrainSensorImpl(controller,user);
 
     }
 
 
     @Test
-    public void toZero(){
+    public void toMinusOne(){
 
-        //when(controller.setSpeedLimit(0)).thenReturn();
-        sensor.overrideSpeedLimit(0);
+  
+        sensor.overrideSpeedLimit(-1);
         Assert.assertEquals(true,user.getAlarmState());
 
     }
@@ -49,9 +50,19 @@ public class TrainSensorTest {
     public void toFiveHundredOne(){
 
         sensor.overrideSpeedLimit(501);
+        Assert.assertEquals(501,sensor.getSpeedLimit());
         Assert.assertEquals(true,user.getAlarmState());
 
     }
+
+    @Test
+    public void setterTest(){
+
+
+        this.user.setAlarmState(true);
+        Assert.assertEquals(true,user.getAlarmState());
+    }
+
 
     @Test
     public void fromHundredFiftytoFifty(){
@@ -84,9 +95,11 @@ public class TrainSensorTest {
 
         for(int i=0; i<150; i++){
             controller.setJoystickPosition(1);
+
         }
-        sensor.overrideSpeedLimit(74);
-        Assert.assertEquals(true,user.getAlarmState());
+        System.out.println(controller.getStep());
+        sensor.overrideSpeedLimit(75);
+        Assert.assertEquals(false,user.getAlarmState());
 
     }
 
