@@ -11,7 +11,8 @@ public class TrainControllerImpl implements TrainController {
 	//uj szalon meghivni igy folyamatosan frissít
 	public int speedTartas(){
 		while(true){
-			wait(1000);
+	//wait modositva 1000rol 1500ra
+			wait(1500);
 			followSpeed();
 		}
 	}
