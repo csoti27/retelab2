@@ -24,6 +24,8 @@ public class TrainUserImpl implements TrainUser {
 
 	public TrainUserImpl(TrainController controller) {
 		this.controller = controller;
+
+
 	}
 
 	@Override
