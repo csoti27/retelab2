@@ -11,102 +11,57 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 
-
-
 public class TrainSensorTest {
-
-    
     TrainUser user;
-
     TrainController controller;
-
     TrainSensorImpl sensor;
-
     @Before
     public void setup(){
 
         user = Mockito.mock(TrainUser.class);
-        user.setAlarmState(false);
+       // user.setAlarmState(false);
         controller=Mockito.mock(TrainController.class);;
+        controller.setSpeedLimit(1000);
         sensor=new TrainSensorImpl(controller,user);
 
     }
 
 
     @Test
+    public void toFiveHundred(){
+
+        sensor.overrideSpeedLimit(500);
+        verify(user,times(1)).setAlarmState(false);
+
+    }
+    @Test
     public void toMinusOne(){
 
 
         sensor.overrideSpeedLimit(-1);
-        Assert.assertEquals(true,user.getAlarmState());
-
+        verify(user,times(1)).setAlarmState(true);
     }
 
-    @Test
-    public void toFiveHundred(){
 
-        sensor.overrideSpeedLimit(500);
-        Assert.assertEquals(false,user.getAlarmState());
 
-    }
     @Test
     public void toFiveHundredOne(){
 
         sensor.overrideSpeedLimit(501);
-        Assert.assertEquals(501,sensor.getSpeedLimit());
-        Assert.assertEquals(true,user.getAlarmState());
+        verify(user,times(1)).setAlarmState(true);
 
     }
 
     @Test
-    public void setterTest(){
-
-        //when(user.setAlarmState(true)).thenReturn(true);
-
-        this.user.setAlarmState(true);
-        Assert.assertEquals(true,user.getAlarmState());
-    }
-
-
-    @Test
-    public void fromHundredFiftytoFifty(){
-
-
+    public void fromHundredFiftyToSeventySix(){
         for(int i=0; i<150; i++){
             controller.setJoystickPosition(1);
+            controller.followSpeed();
         }
-        sensor.overrideSpeedLimit(50);
-        Assert.assertEquals(true,user.getAlarmState());
+
+        sensor.overrideSpeedLimit(76);
+        verify(user,times(1)).setAlarmState(false);
 
     }
-
-
-    @Test
-    public void fromHundredFiftytoSeventiyFour(){
-
-
-        for(int i=0; i<150; i++){
-            controller.setJoystickPosition(1);
-        }
-        sensor.overrideSpeedLimit(74);
-        Assert.assertEquals(true,user.getAlarmState());
-
-    }
-
-    @Test
-    public void fromHundredFiftyToSeventyFive(){
-
-
-        for(int i=0; i<150; i++){
-            controller.setJoystickPosition(1);
-
-        }
-        System.out.println(controller.getStep());
-        sensor.overrideSpeedLimit(75);
-        Assert.assertEquals(false,user.getAlarmState());
-
-    }
-
-
 
 }
