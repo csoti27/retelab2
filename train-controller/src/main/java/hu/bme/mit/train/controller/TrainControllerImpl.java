@@ -5,6 +5,10 @@ import hu.bme.mit.train.interfaces.TrainController;
 public class TrainControllerImpl implements TrainController {
 
 	private int step = 0;
+	@Override
+	public int getStep(){
+		return step;
+	}
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 
@@ -22,6 +26,8 @@ public class TrainControllerImpl implements TrainController {
 
 		enforceSpeedLimit();
 	}
+
+
 
 	@Override
 	public int getReferenceSpeed() {
@@ -44,8 +50,7 @@ public class TrainControllerImpl implements TrainController {
 	@Override
 	public void setJoystickPosition(int joystickPosition) {
 		this.step = joystickPosition;
-		//followSpeed();		//ha a jostickposition megvaltozott, akkor allitunk a referencespeeden a followspeed fuggvenyben
-	}
 
+	}
 
 }

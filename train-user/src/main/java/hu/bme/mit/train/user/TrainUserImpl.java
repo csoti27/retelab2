@@ -10,18 +10,22 @@ public class TrainUserImpl implements TrainUser {
 
 	private boolean alarmState;
 
+
+
 	@Override
 	public boolean getAlarmState() {
 		return alarmState;
 	}
 
 	@Override
-	public void setAlarmState(boolean alarmState) {
-		this.alarmState = alarmState;
+	public void setAlarmState(boolean a) {
+		this.alarmState = a;
 	}
 
 	public TrainUserImpl(TrainController controller) {
 		this.controller = controller;
+
+
 	}
 
 	@Override
@@ -38,13 +42,6 @@ public class TrainUserImpl implements TrainUser {
 	public void overrideJoystickPosition(int joystickPosition) {
 		this.joystickPosition = joystickPosition;
 		controller.setJoystickPosition(joystickPosition);
-
-	}
-	
-	
-	public void userOverwriteSpeedLimit(int joystickPosition){
-		this.joystickPosition=joystickPosition;
-		this.controller.setSpeedLimit(joystickPosition);
 	}
 
 }
