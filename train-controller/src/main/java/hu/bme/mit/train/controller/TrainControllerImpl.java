@@ -12,6 +12,15 @@ public class TrainControllerImpl implements TrainController {
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 
+	//uj szalon meghivni igy folyamatosan frissít
+	public int speedTartas(){
+		while(true){
+	//wait modositva 1000rol 1500ra
+			wait(1500);
+			followSpeed();
+		}
+	}
+	
 	@Override
 	public void followSpeed() {
 		if (referenceSpeed < 0) {
